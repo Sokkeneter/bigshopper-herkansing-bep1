@@ -30,6 +30,15 @@ public class Shop {
         return Shopper.getAllShoppers();
     }
 
+    public Shopper getShopper(String name){
+        for(Shopper shopper : Shopper.getAllShoppers()){
+            if (shopper.getName().equals(name)){
+                return shopper;
+            }
+        }
+        return null;
+    }
+
     public List<ShoppingList> getListFromPerson(String nm) {
         Shopper found = Shopper.getAllShoppers().stream().filter(hasName(nm)).findFirst().orElse(null);
         return found == null ? null : found.getAllLists();
@@ -37,5 +46,23 @@ public class Shop {
 
     public List<Product> getAllProducts() {
         return Product.getAllProducts();
+    }
+
+    public ShoppingList getShoppingList(String name){
+        for(ShoppingList list : getAllShoppingLists()){
+            if (list.getName().equals(name)){
+                return list;
+            }
+        }
+        return null;
+    }
+
+    public Product getProduct(String name){
+        for(Product product : getAllProducts()){
+            if (product.getName().equals(name)){
+                return product;
+            }
+        }
+        return null;
     }
 }

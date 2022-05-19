@@ -1,24 +1,30 @@
 package nl.hu.bep.shopping.webservices;
 
 import nl.hu.bep.shopping.model.Shop;
+import nl.hu.bep.shopping.webservices.exception.ResponseError;
+import nl.hu.bep.shopping.webservices.ikweetniethoeikditmoetnoemen.ProductDTO;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("product")
 public class ProductResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getProducts() {
-        JsonArrayBuilder jab = Json.createArrayBuilder();
-        //tip: oneliners seem awesome, but what part exactly gives us the error if any occurs on line 23?
-        Shop.getShop().getAllProducts().forEach(p-> jab.add(Json.createObjectBuilder().add("name", p.getName())));
-        return jab.build().toString();
+    public Response getProducts() {
+        return Response.ok(Shop.getShop().getAllProducts()).build();
+    }
 
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addProduct(ProductDTO newProduct) {
+        try{
+            return Response.ok(ProductDTO.addToList(newProduct.getProductName(), newProduct.getListName(), newProduct.getAmount())).build();
+        }
+        catch (NullPointerException npe){
+            return Response.status(404).entity(ResponseError.createError("list not found")).build();
+        }
     }
 }

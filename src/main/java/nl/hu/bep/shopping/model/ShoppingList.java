@@ -44,4 +44,5 @@ public class ShoppingList implements NamedObject {
     public static List<ShoppingList> getAllLists() {
         return Collections.unmodifiableList(allLists);
     }
+
 }

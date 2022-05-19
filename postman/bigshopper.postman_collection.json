@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "109adc26-26b6-41bc-8471-2f65cfd858e9",
+		"name": "bigshopper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post new list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"testList\",\r\n    \"shopperName\": \"Dum-Dum\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/restservices/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"restservices",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product to list",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\": {\r\n        \"name\": \"verona's product\"\r\n    },\r\n    \"listName\": \"initialList\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/restservices/list/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"restservices",
+						"list",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

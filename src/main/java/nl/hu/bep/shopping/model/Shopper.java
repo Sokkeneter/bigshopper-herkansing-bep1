@@ -1,5 +1,7 @@
 package nl.hu.bep.shopping.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.Objects;
 public class Shopper implements NamedObject {
     private String name;
     private static List<Shopper> allShoppers = new ArrayList<>();
+    @JsonIgnore
     private List<ShoppingList> allLists = new ArrayList<>();
 
     public Shopper(String nm) {
@@ -50,4 +53,6 @@ public class Shopper implements NamedObject {
     public int getAmountOfLists() {
         return allLists.size();
     }
+
+
 }
